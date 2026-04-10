@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>紐西蘭南島 · 10 天行程</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1A18;
+    --moss: #4A5E3A;
+    --moss-light: #7A9A62;
+    --stone: #8C8476;
+    --gold: #C4973A;
+    --sky: #6B9BB8;
+    --water: #A8C5D4;
+    --warm: #D4956A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 4rem 5vw;
+    overflow: hidden;
+    background: var(--dark);
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(106,155,184,0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 80%, rgba(74,94,58,0.3) 0%, transparent 50%),
+      linear-gradient(160deg, #0d1a0f 0%, #1a2818 40%, #0e1f2e 100%);
+  }
+
+  .hero-texture {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .hero-mountains {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(26,40,24,0.8), transparent);
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--water);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 400;
+    line-height: 1;
+    color: #fff;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--moss-light);
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 1.5rem;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .hero-meta-item {
+    display: flex; flex-direction: column; gap: 4px;
+  }
+
+  .hero-meta-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .hero-meta-value {
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem; right: 5vw;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    writing-mode: vertical-rl;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s forwards;
+  }
+
+  /* NAVIGATION */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(245,240,232,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding: 0 5vw;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-item {
+    padding: 1rem 1.2rem;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--stone);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .nav-item:hover { color: var(--dark); }
+  .nav-item.active { color: var(--moss); border-bottom-color: var(--moss); font-weight: 500; }
+
+  /* MAIN CONTENT */
+  .main { max-width: 860px; margin: 0 auto; padding: 5rem 5vw; }
+
+  /* SECTION HEADER */
+  .section-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .section-intro-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+
+  .section-intro-right {
+    padding-top: 0.5rem;
+    color: var(--stone);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* BOOKING ALERTS */
+  .alerts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 4rem;
+  }
+
+  .alert-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 12px;
+    padding: 1.1rem 1.3rem;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    transition: box-shadow 0.2s;
+  }
+  .alert-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+
+  .alert-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .alert-title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+
+  .alert-timing {
+    font-size: 12px;
+    color: var(--warm);
+    font-weight: 500;
+  }
+
+  /* DAYS TIMELINE */
+  .timeline { position: relative; }
+
+  .timeline-line {
+    position: absolute;
+    left: 28px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1) 5%, rgba(0,0,0,0.1) 95%, transparent);
+  }
+
+  .day-block {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 0;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: all 0.5s ease;
+  }
+  .day-block.visible { opacity: 1; transform: translateY(0); }
+
+  .day-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4px;
+    gap: 0;
+  }
+
+  .day-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--cream);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .day-number {
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: var(--stone);
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  .day-content {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    margin-left: 1rem;
+    margin-bottom: 0;
+    transition: box-shadow 0.2s;
+  }
+  .day-content:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+
+  .day-header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+
+  .day-date-tag {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 0.4rem;
+  }
+
+  .day-title-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .drive-tag {
+    font-size: 11px;
+    background: rgba(106,155,184,0.12);
+    color: var(--sky);
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .activities { display: flex; flex-direction: column; gap: 8px; }
+
+  .activity {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #3a3a38;
+  }
+
+  .activity-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 6px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .tag-book { background: rgba(196,151,58,0.12); color: var(--gold); }
+  .tag-must { background: rgba(74,94,58,0.12); color: var(--moss); }
+  .tag-free { background: rgba(140,132,118,0.12); color: var(--stone); }
+  .tag-weather { background: rgba(212,149,106,0.12); color: var(--warm); }
+
+  .day-note {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(196,151,58,0.07);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    font-size: 12px;
+    color: var(--stone);
+    line-height: 1.6;
+  }
+
+  /* SPECIAL DAYS */
+  .day-transit .day-content { background: var(--dark); color: #fff; border-color: transparent; }
+  .day-transit .day-date-tag { color: rgba(255,255,255,0.4); }
+  .day-transit .day-title-text { color: #fff; }
+  .day-transit .activity { color: rgba(255,255,255,0.75); }
+  .day-transit .activity-dot { background: rgba(255,255,255,0.3) !important; }
+  .day-transit .day-note { background: rgba(255,255,255,0.07); border-left-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.5); }
+
+  /* FOOTER */
+  .footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 3rem 5vw;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+  .footer span { color: var(--moss-light); }
+
+  /* WEATHER BOX */
+  .weather-box {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .weather-item h4 {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 0.5rem;
+  }
+  .weather-item p { font-size: 13px; line-height: 1.6; color: var(--dark); }
+
+  /* FOOD SECTION */
+  .food-city-block { margin-bottom: 2.5rem; }
+  .food-city-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone);
+    font-weight: 500;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    margin-bottom: 1rem;
+  }
+  .food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 10px;
+  }
+  .food-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 14px;
+    padding: 1rem 1.2rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .food-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); border-color: rgba(196,151,58,0.4); }
+  .food-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+    gap: 8px;
+  }
+  .food-name { font-size: 14px; font-weight: 500; line-height: 1.3; }
+  .food-rating {
+    font-size: 11px; font-weight: 500; color: var(--gold);
+    white-space: nowrap; padding: 2px 7px;
+    background: rgba(196,151,58,0.1); border-radius: 20px; flex-shrink: 0;
+  }
+  .food-type { font-size: 11px; color: var(--stone); margin-bottom: 0.4rem; }
+  .food-price { font-size: 11px; font-weight: 500; color: var(--moss); margin-left: 6px; letter-spacing: 0.03em; }
+  .food-dish { font-size: 12px; color: var(--dark); line-height: 1.55; opacity: 0.75; }
+  .food-tag {
+    display: inline-block; font-size: 10px; font-weight: 500;
+    padding: 2px 7px; border-radius: 20px; margin-top: 6px; margin-right: 4px;
+  }
+  .food-must { background: rgba(74,94,58,0.1); color: var(--moss); }
+  .food-shop { background: rgba(106,155,184,0.1); color: var(--sky); }
+  .food-book { background: rgba(196,151,58,0.1); color: var(--gold); }
+  .food-section-header {
+    display: flex; align-items: baseline; gap: 1rem;
+    margin-bottom: 2rem; padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .food-section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 400;
+  }
+  .food-section-header p { font-size: 13px; color: var(--stone); }
+  .food-map-hint { font-size: 10px; color: var(--stone); margin-top: 4px; opacity: 0.6; }
+
+  /* FOOD SECTION */
+  .food-city-block { margin-bottom: 2.5rem; }
+  .food-city-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--stone); font-weight: 500; padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(0,0,0,0.07); margin-bottom: 1rem;
+  }
+  .food-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+  .food-card {
+    background: #fff; border: 1px solid rgba(0,0,0,0.07); border-radius: 14px;
+    padding: 1rem 1.2rem; transition: box-shadow 0.2s, transform 0.2s;
+    cursor: pointer; text-decoration: none; color: inherit; display: block;
+  }
+  .food-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); border-color: rgba(196,151,58,0.4); }
+  .food-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.3rem; gap: 8px; }
+  .food-name { font-size: 14px; font-weight: 500; line-height: 1.3; }
+  .food-rating { font-size: 11px; font-weight: 500; color: var(--gold); white-space: nowrap; padding: 2px 7px; background: rgba(196,151,58,0.1); border-radius: 20px; flex-shrink: 0; }
+  .food-type { font-size: 11px; color: var(--stone); margin-bottom: 0.4rem; }
+  .food-price { font-size: 11px; font-weight: 500; color: var(--moss); margin-left: 6px; letter-spacing: 0.03em; }
+  .food-dish { font-size: 12px; color: var(--dark); line-height: 1.55; opacity: 0.75; }
+  .food-ftag { display: inline-block; font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 20px; margin-top: 6px; margin-right: 4px; }
+  .food-must { background: rgba(74,94,58,0.1); color: var(--moss); }
+  .food-shop { background: rgba(106,155,184,0.1); color: var(--sky); }
+  .food-book { background: rgba(196,151,58,0.1); color: var(--gold); }
+  .food-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .food-section-header h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; }
+  .food-section-header p { font-size: 13px; color: var(--stone); }
+  .food-map-hint { font-size: 10px; color: var(--stone); margin-top: 4px; opacity: 0.6; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .section-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+    .alerts { grid-template-columns: 1fr; }
+    .weather-box { grid-template-columns: 1fr; }
+    .hero-title { font-size: 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-mountains"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">紐西蘭 · 南島自駕</p>
+    <h1 class="hero-title">South<br><em>Island</em></h1>
+    <p class="hero-subtitle">基督城 ↔ 皇后鎮 · 峽灣 · 麥肯錫盆地</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">出發日期</span>
+        <span class="hero-meta-value">2025 年 9 月 18 日</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">天數</span>
+        <span class="hero-meta-value">12 天</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">季節</span>
+        <span class="hero-meta-value">南半球初春</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</section>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-item active" href="#itinerary">行程總覽</a>
+  <a class="nav-item" href="#food">美食指南</a>
+  <a class="nav-item" href="#book">預約提醒</a>
+  <a class="nav-item" href="#weather">天氣備注</a>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="section-intro" id="itinerary">
+    <div class="section-intro-left">
+      <h2>10 天<br>精華路線</h2>
+    </div>
+    <div class="section-intro-right">
+      去程從基督城走內陸 SH8 南下，經過夢幻藍綠色的 Pukaki 湖抵達瓦納卡，再進皇后鎮。玩遍 Glenorchy 騎馬、米佛峽灣遊船後，回程穿越麥肯錫盆地，以蒂卡波湖的星空收尾，途中順路停 Castle Hill 巨石群。全程沒有走回頭路。
+    </div>
+  </div>
+
+  <!-- BOOKING ALERTS -->
+  <div class="alerts" id="book">
+    <div class="alert-card">
+      <div class="alert-icon">🐴</div>
+      <div>
+        <div class="alert-title">Glenorchy 騎馬渡河</div>
+        <div class="alert-timing">提前 2–4 週預約</div>
+      </div>
+    </div>
+    <div class="alert-card">
+      <div class="alert-icon">⛵</div>
+      <div>
+        <div class="alert-title">米佛峽灣一日遊船</div>
+        <div class="alert-timing">提前 1–2 個月預約</div>
+      </div>
+    </div>
+    <div class="alert-card">
+      <div class="alert-icon">🌌</div>
+      <div>
+        <div class="alert-title">蒂卡波 Earth & Sky 星空</div>
+        <div class="alert-timing">提前 2–4 週預約</div>
+      </div>
+    </div>
+    <div class="alert-card">
+      <div class="alert-icon">✈️</div>
+      <div>
+        <div class="alert-title">Mt. Cook 跳傘</div>
+        <div class="alert-timing">預留天氣備案彈性</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEATHER -->
+  <div class="weather-box" id="weather">
+    <div class="weather-item">
+      <h4>季節</h4>
+      <p>9 月為南島初春，氣候多變，早晚溫差大。</p>
+    </div>
+    <div class="weather-item">
+      <h4>溫度</h4>
+      <p>蒂卡波、Mt. Cook 一帶早晚可能接近 0°C，需帶保暖衣物與衝鋒衣。</p>
+    </div>
+    <div class="weather-item">
+      <h4>羽扇豆</h4>
+      <p>花季通常 11 月才開，9 月可能尚未開花 🌸</p>
+    </div>
+  </div>
+
+  <!-- FOOD SECTION -->
+  <div id="food" style="margin-bottom:4rem;">
+    <div class="food-section-header">
+      <h2>美食指南</h2>
+      <p>依城市整理，好吃不踩雷 · 點擊卡片開啟 Google Maps</p>
+    </div>
+
+    <div class="food-city-block">
+      <div class="food-city-label">Day 1 · 基督城 Christchurch</div>
+      <div class="food-grid">
+        <a class="food-card" href="https://www.google.com/maps/search/Manu+Restaurant+Bar+Christchurch+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Manu Restaurant</div><div class="food-rating">★ 4.8</div></div>
+          <div class="food-type">毛利風格現代料理 · 晚餐<span class="food-price">$$$</span></div>
+          <div class="food-dish">融合毛利食材的創意料理，雞尾酒「Manuka Me Crazy」必點，氣氛很特別。</div>
+          <span class="food-ftag food-book">建議訂位</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/5th+Street+Restaurant+Sydenham+Christchurch" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">5th Street</div><div class="food-rating">★ 4.8</div></div>
+          <div class="food-type">精緻分享式料理 · 晚餐<span class="food-price">$$$</span></div>
+          <div class="food-dish">Chef's Table 體驗超值，牡蠣菇和牛排塔塔是招牌，提拉米蘇甜點也必點。</div>
+          <span class="food-ftag food-book">建議訂位</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/ROCA+Restaurant+Oxford+Terrace+Christchurch" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">ROCA</div><div class="food-rating">★ 4.7</div></div>
+          <div class="food-type">地中海風格 · 午晚餐<span class="food-price">$$</span></div>
+          <div class="food-dish">布拉塔起司、羊肉和牛肉塔塔都令人驚豔，河邊位置景色宜人，平日午餐較好訂。</div>
+          <span class="food-ftag food-must">平日較好訂</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Jimmy+Smokehouse+Christchurch+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Jimmy's Smokehouse</div><div class="food-rating">★ 4.5</div></div>
+          <div class="food-type">美式煙燻烤肉 · 午晚餐<span class="food-price">$$</span></div>
+          <div class="food-dish">基督城河邊位置，招牌 Surf & Turf 拼盤有排骨、牛排、海鮮，份量豪邁，氣氛輕鬆隨性。</div>
+          <span class="food-ftag food-must">無需訂位</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Steampunk+Laboratory+Christchurch+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Steampunk Laboratory</div><div class="food-rating">★ 4.9</div></div>
+          <div class="food-type">韓式肉飯碗 · 午餐<span class="food-price">$</span></div>
+          <div class="food-dish">$16.9 一碗料超多，米飯完美、肉質鮮嫩，週末公休，平日 10:30 開到下午 3 點。</div>
+          <span class="food-ftag food-must">超值</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Afghan+Restaurant+Lincoln+Road+Christchurch" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Afghan Restaurant</div><div class="food-rating">★ 4.7</div></div>
+          <div class="food-type">阿富汗烤肉串 · 晚餐<span class="food-price">$</span></div>
+          <div class="food-dish">只賣一道：羊肉雞肉烤串配飯，份量超大一份兩人吃，被譽為大洋洲最便宜最好吃的一餐。</div>
+          <span class="food-ftag food-must">超值</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="food-city-block">
+      <div class="food-city-label">Day 2–3 · 瓦納卡 Wānaka</div>
+      <div class="food-grid">
+        <a class="food-card" href="https://www.google.com/maps/search/Muttonbird+Restaurant+Wanaka+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Muttonbird</div><div class="food-rating">★ 5.0</div></div>
+          <div class="food-type">季節創意料理 · 晚餐<span class="food-price">$$$</span></div>
+          <div class="food-dish">評分滿分！8 道菜主廚精選體驗，羊頸肉和扇貝都是絕品。週一、日公休。</div>
+          <span class="food-ftag food-book">強烈建議訂位</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Kika+Restaurant+Wanaka+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Kika</div><div class="food-rating">★ 4.7</div></div>
+          <div class="food-type">現代紐西蘭料理 · 晚餐<span class="food-price">$$</span></div>
+          <div class="food-dish">味噌奶油麵包必點，醃漬鮭魚和市場魚每次都不同，很多人去了還想再去。</div>
+          <span class="food-ftag food-book">建議訂位</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Treehouse+Wanaka+Restaurant+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Treehouse Wānaka</div><div class="food-rating">★ 4.9</div></div>
+          <div class="food-type">精緻小館 · 晚餐<span class="food-price">$$$</span></div>
+          <div class="food-dish">招牌鮑魚可樂餅令人驚喜，Trust the Chef 菜單道道驚艷。週一、二公休。</div>
+          <span class="food-ftag food-book">建議訂位</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Burrito+Craft+Wanaka+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Burrito Craft</div><div class="food-rating">★ 4.7</div></div>
+          <div class="food-type">墨西哥捲餅 · 午晚餐<span class="food-price">$</span></div>
+          <div class="food-dish">招牌 Cheeseburger Burrito 份量超大，裡面還有薯片超特別，很多人說是瓦納卡最好吃的平價餐。</div>
+          <span class="food-ftag food-must">超值</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="food-city-block">
+      <div class="food-city-label">Day 4–6 · 皇后鎮 Queenstown</div>
+      <div class="food-grid">
+        <a class="food-card" href="https://www.google.com/maps/search/Fergburger+Queenstown+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Fergburger</div><div class="food-rating">★ 4.5</div></div>
+          <div class="food-type">漢堡 · 隨時<span class="food-price">$</span></div>
+          <div class="food-dish">皇后鎮最著名排隊漢堡，份量超大，牛肉多汁，幾乎是到此一遊的必打卡。</div>
+          <span class="food-ftag food-must">必吃</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Toast+Oak+Restaurant+Queenstown+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">TOAST &amp; OAK</div><div class="food-rating">★ 4.8</div></div>
+          <div class="food-type">精緻料理 · 晚餐<span class="food-price">$$$</span></div>
+          <div class="food-dish">菜單簡單但每道藏有驚喜，嫩煎里肌和菌菇寬麵是招牌，本地酒搭配一流。</div>
+          <span class="food-ftag food-book">建議訂位</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Public+Italian+Kitchen+Steamer+Wharf+Queenstown" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Public Italian Kitchen</div><div class="food-rating">★ 4.7</div></div>
+          <div class="food-type">義大利料理 · 午晚餐<span class="food-price">$$</span></div>
+          <div class="food-dish">湖邊 Steamer Wharf 位置，手工 Gnocchi 是全城首推，羊肉也是招牌。</div>
+          <span class="food-ftag food-must">無需訂位</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Sunfire+Restaurant+Queenstown+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Sunfire Queenstown</div><div class="food-rating">★ 4.7</div></div>
+          <div class="food-type">全日餐廳 · 早午晚餐<span class="food-price">$$</span></div>
+          <div class="food-dish">湖畔位置，早午餐和晚餐都出色，水牛乳酪和豬腩肉是人氣菜色。</div>
+          <span class="food-ftag food-must">無需訂位</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/FOGO+South+American+BBQ+Queenstown+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">FOGO South American BBQ</div><div class="food-rating">★ 4.6</div></div>
+          <div class="food-type">南美炭火烤肉 · 午晚餐<span class="food-price">$$</span></div>
+          <div class="food-dish">巴西烤肉吃到飽 $85/pp，牛短肋和羊肉是招牌，午餐有 $30 特惠套餐，氣氛很熱鬧。</div>
+          <span class="food-ftag food-must">必試</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Pedro+House+of+Lamb+Queenstown+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Pedro's House of Lamb</div><div class="food-rating">★ 4.6</div></div>
+          <div class="food-type">慢烤羊肩肉外帶 · 午餐<span class="food-price">$</span></div>
+          <div class="food-dish">菜單只有一道：整塊慢烤羊肩，骨肉分離、入口即化。外帶站，幾張戶外桌，超值必吃。</div>
+          <span class="food-ftag food-must">必吃</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Rees+Health+Hub+Queenstown+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Rees Health Hub</div><div class="food-rating">★ 5.0</div></div>
+          <div class="food-type">伴手禮選物店 · 隨時<span class="food-price">$$</span></div>
+          <div class="food-dish">主打紐西蘭天然羊毛皂，是質感又實用的伴手禮首選。Beach Street 市中心位置，逛街順路可買。開到晚上 10 點。</div>
+          <span class="food-ftag food-shop">伴手禮</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Caribe+Latin+Kitchen+Queenstown+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Caribe Latin Kitchen</div><div class="food-rating">★ 4.4</div></div>
+          <div class="food-type">墨西哥料理 · 午晚餐<span class="food-price">$</span></div>
+          <div class="food-dish">市中心便宜美食，雞肉 Arepa 和 Chimichanga 是人氣選項，份量大、無麩質友善。</div>
+          <span class="food-ftag food-must">超值</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Erik+Fish+Chips+Queenstown+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Erik's Fish & Chips</div><div class="food-rating">★ 4.2</div></div>
+          <div class="food-type">炸魚薯條 · 午晚餐<span class="food-price">$</span></div>
+          <div class="food-dish">$15 套餐吃得飽，炸奇異果是招牌限定小食，買完帶去湖邊吃超愜意。</div>
+          <span class="food-ftag food-must">超值</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="food-city-block">
+      <div class="food-city-label">Day 6–7 · Te Anau</div>
+      <div class="food-grid">
+        <a class="food-card" href="https://www.google.com/maps/search/Redcliff+Restaurant+Te+Anau+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Redcliff Restaurant</div><div class="food-rating">★ 4.6</div></div>
+          <div class="food-type">峽灣野味料理 · 晚餐<span class="food-price">$$</span></div>
+          <div class="food-dish">Te Anau 最著名餐廳，野鹿肉、野兔、藍鱈魚都是本地獵來的，魔戒演員曾到訪。</div>
+          <span class="food-ftag food-book">強烈建議訂位</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Black+Dog+Bar+Te+Anau+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Black Dog Bar</div><div class="food-rating">★ 4.8</div></div>
+          <div class="food-type">創意酒吧料理 · 晚餐<span class="food-price">$$</span></div>
+          <div class="food-dish">有人說是全紐西蘭最難忘的一餐！鴨腿、鹿肉、創意雞尾酒都一流。</div>
+          <span class="food-ftag food-book">建議訂位</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Sandfly+Cafe+Te+Anau+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Sandfly Café</div><div class="food-rating">★ 4.6</div></div>
+          <div class="food-type">早午餐咖啡廳 · 早上<span class="food-price">$</span></div>
+          <div class="food-dish">當地人最愛早午餐，招牌牛排三明治和鬆餅超人氣，開到下午 4:30。</div>
+          <span class="food-ftag food-must">無需訂位</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Milford+Road+Merchant+Te+Anau+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Milford Road Merchant</div><div class="food-rating">★ 4.9</div></div>
+          <div class="food-type">咖啡廳＆烘焙 · 早上<span class="food-price">$</span></div>
+          <div class="food-dish">前往米佛峽灣必經的早餐神店！肉桂捲、派和香腸捲被評為南島最好吃之一。週日公休，7 點開門。</div>
+          <span class="food-ftag food-must">必吃</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="food-city-block">
+      <div class="food-city-label">Day 8–9 · 蒂卡波湖 Lake Tekapo</div>
+      <div class="food-grid">
+        <a class="food-card" href="https://www.google.com/maps/search/TLV+Restaurant+Bar+Lake+Tekapo+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">TLV Restaurant &amp; Bar</div><div class="food-rating">★ 4.6</div></div>
+          <div class="food-type">地中海融合料理 · 晚餐<span class="food-price">$$</span></div>
+          <div class="food-dish">蒂卡波最好的餐廳，共享羊肩肉是招牌，雞尾酒創意十足，記得提前訂位。</div>
+          <span class="food-ftag food-book">建議訂位</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/The+Better+Batter+NZ+Lake+Tekapo" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">The Better Batter NZ</div><div class="food-rating">★ 4.8</div></div>
+          <div class="food-type">炸魚薯條 · 下午小攤<span class="food-price">$</span></div>
+          <div class="food-dish">湖邊路旁小攤，號稱全紐西蘭最好吃炸魚薯條，下午 1 點開門，需排隊等 30–40 分鐘。</div>
+          <span class="food-ftag food-must">必吃</span>
+        </a>
+        <a class="food-card" href="https://www.google.com/maps/search/Morelea+Lakeside+Lake+Tekapo+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Morelea Lakeside</div><div class="food-rating">★ 5.0</div></div>
+          <div class="food-type">甜點咖啡廳 · 下午<span class="food-price">$</span></div>
+          <div class="food-dish">蒂卡波著名 Pavlova（紐西蘭國民甜點），湖邊自家烘焙，建議提前 Instagram 預約。</div>
+          <span class="food-ftag food-must">必嚐</span>
+        </a>
+              <a class="food-card" href="https://www.google.com/maps/search/Mt+Cook+Alpine+Salmon+Shop+Lake+Pukaki+New+Zealand" target="_blank" rel="noopener">
+          <div class="food-card-top"><div class="food-name">Mt Cook Alpine Salmon</div><div class="food-rating">★ 4.5</div></div>
+          <div class="food-type">現捕鮭魚生魚片 · 白天小攤<span class="food-price">$</span></div>
+          <div class="food-dish">Pukaki 湖畔直銷，現切鮭魚生魚片超新鮮，搭配湖景吃簡直絕配。也有煙燻鮭魚可帶走。開到下午 5 點。</div>
+          <span class="food-ftag food-must">必吃</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline">
+    <div class="timeline-line"></div>
+
+    <!-- DAY 1 -->
+    <div class="day-block day-transit">
+      <div class="day-marker">
+        <div class="day-dot" style="background:#4A5E3A;"></div>
+        <div class="day-number">D1</div>
+      </div>
+      <div class="day-content">
+        <div class="day-header-row">
+          <div>
+            <div class="day-date-tag">9 / 18 · 週四</div>
+            <div class="day-title-text">抵達奧克蘭 → 飛基督城</div>
+          </div>
+        </div>
+        <div class="activities">
+          <div class="activity"><div class="activity-dot"></div><div>11:50 抵達奧克蘭，入境、提行李、過海關（預留 1 小時）</div></div>
+          <div class="activity"><div class="activity-dot"></div><div>轉機奧克蘭 → 基督城（建議 14:50 以後班機，至少 3 小時轉機緩衝）</div></div>
+          <div class="activity"><div class="activity-dot"></div><div>約 17:00 抵達基督城，取租車、check in</div></div>
+          <div class="activity"><div class="activity-dot"></div><div>市區吃晚餐、好好休息 😴</div></div>
+        </div>
+        <div class="day-note">交通日，不排景點。紐西蘭農業海關查驗嚴格，食物請提前申報。</div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day-block">
+      <div class="day-marker">
+        <div class="day-dot" style="background:#6B9BB8;"></div>
+        <div class="day-number">D2</div>
+      </div>
+      <div class="day-content">
+        <div class="day-header-row">
+          <div>
+            <div class="day-date-tag">9 / 19 · 週五</div>
+            <div class="day-title-text">基督城 → 瓦納卡</div>
+          </div>
+          <span class="drive-tag">車程 4.5 hr</span>
+        </div>
+        <div class="activities">
+          <div class="activity"><div class="activity-dot" style="background:var(--sky);"></div><div>早出發，走 SH8 內陸路線南下</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--moss);"></div><div>中途停 <strong>Lake Pukaki</strong> 拍照<span class="tag tag-must">必停</span> — 夢幻藍綠湖水，晴天可遠眺庫克山</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--sky);"></div><div>傍晚抵達瓦納卡，湖邊散步，找餐廳吃晚餐</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="day-block">
+      <div class="day-marker">
+        <div class="day-dot" style="background:#7A9A62;"></div>
+        <div class="day-number">D3</div>
+      </div>
+      <div class="day-content">
+        <div class="day-header-row">
+          <div>
+            <div class="day-date-tag">9 / 20 · 週六</div>
+            <div class="day-title-text">瓦納卡悠閒日</div>
+          </div>
+        </div>
+        <div class="activities">
+          <div class="activity"><div class="activity-dot" style="background:var(--moss-light);"></div><div><strong>孤獨的樹</strong> That Wānaka Tree<span class="tag tag-must">必拍</span></div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--moss-light);"></div><div>湖邊咖啡早午餐（推薦 Ritual Café）</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--moss-light);"></div><div>小鎮漫步，輕鬆度過下午</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 4 -->
+    <div class="day-block">
+      <div class="day-marker">
+        <div class="day-dot" style="background:#C4973A;"></div>
+        <div class="day-number">D4</div>
+      </div>
+      <div class="day-content">
+        <div class="day-header-row">
+          <div>
+            <div class="day-date-tag">9 / 21 · 週日</div>
+            <div class="day-title-text">瓦納卡 → 皇后鎮</div>
+          </div>
+          <span class="drive-tag">Crown Range · 1 hr</span>
+        </div>
+        <div class="activities">
+          <div class="activity"><div class="activity-dot" style="background:var(--gold);"></div><div>早上咖啡早午餐，輕鬆出發</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--gold);"></div><div>經 <strong>Crown Range 高山公路</strong>入城（南島最高公路，壯觀全景）</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--gold);"></div><div>傍晚抵達皇后鎮，市區逛逛</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--warm);"></div><div>必吃 <strong>Fergburger</strong><span class="tag tag-must">排隊必吃</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 5 -->
+    <div class="day-block">
+      <div class="day-marker">
+        <div class="day-dot" style="background:#7A9A62;"></div>
+        <div class="day-number">D5</div>
+      </div>
+      <div class="day-content">
+        <div class="day-header-row">
+          <div>
+            <div class="day-date-tag">9 / 22 · 週一</div>
+            <div class="day-title-text">皇后鎮 · Glenorchy + 蒸汽船</div>
+          </div>
+        </div>
+        <div class="activities">
+          <div class="activity"><div class="activity-dot" style="background:var(--moss-light);"></div><div><strong>Glenorchy 騎馬渡河</strong><span class="tag tag-book">提前預約</span> — 魔戒場景，約 2–3 小時</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--sky);"></div><div>下午回皇后鎮，搭 <strong>TSS Earnslaw 蒸汽船</strong>遊湖（約 2 小時）</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--moss-light);"></div><div>晚上皇后鎮市區自由活動</div></div>
+        </div>
+        <div class="day-note">Glenorchy 騎馬需提前 2–4 週預約！旺季非常搶手。</div>
+      </div>
+    </div>
+
+    <!-- DAY 6 -->
+    <div class="day-block">
+      <div class="day-marker">
+        <div class="day-dot" style="background:#6B9BB8;"></div>
+        <div class="day-number">D6</div>
+      </div>
+      <div class="day-content">
+        <div class="day-header-row">
+          <div>
+            <div class="day-date-tag">9 / 23 · 週二</div>
+            <div class="day-title-text">皇后鎮 → Te Anau</div>
+          </div>
+          <span class="drive-tag">車程 1.5 hr</span>
+        </div>
+        <div class="activities">
+          <div class="activity"><div class="activity-dot" style="background:var(--warm);"></div><div>早上 <strong>Skyline Luge 滑車</strong><span class="tag tag-must">朋友團必玩</span></div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--sky);"></div><div>下午移動 Te Anau</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--moss-light);"></div><div>傍晚 <strong>Bird Sanctuary</strong> 看南秧雞 Takahē<span class="tag tag-free">免費</span></div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--gold);"></div><div>晚餐訂 <strong>Redcliff</strong> 或 <strong>Black Dog</strong><span class="tag tag-book">提前訂位</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 7 -->
+    <div class="day-block">
+      <div class="day-marker">
+        <div class="day-dot" style="background:#4A5E3A;"></div>
+        <div class="day-number">D7</div>
+      </div>
+      <div class="day-content">
+        <div class="day-header-row">
+          <div>
+            <div class="day-date-tag">9 / 24 · 週三</div>
+            <div class="day-title-text">米佛峽灣一日遊</div>
+          </div>
+          <span class="drive-tag">單程 2 hr 山路</span>
+        </div>
+        <div class="activities">
+          <div class="activity"><div class="activity-dot" style="background:var(--moss);"></div><div>7–8 點從 Te Anau <strong>早出發</strong>（山路蜿蜒，請預留時間）</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--moss);"></div><div><strong>米佛峽灣全天遊船</strong><span class="tag tag-book">提前訂票</span> — 瀑布、海豹、海豚</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--sky);"></div><div>傍晚返回 Te Anau 夜宿</div></div>
+        </div>
+        <div class="day-note">遊船旺季極容易額滿，建議出發前 1–2 個月就訂！</div>
+        <div class="day-note" style="margin-top:8px; border-left-color: var(--warm); background: rgba(212,149,106,0.07);">🦟 <strong>沙蠅警告</strong>：峽灣地區沙蠅（Sandfly）超多且咬人奇癢，務必穿<strong>長袖長褲</strong>。推薦攜帶<strong>日本金鳥防蚊液</strong>，效果比一般防蚊產品好很多。</div>
+      </div>
+    </div>
+
+    <!-- DAY 8 -->
+    <div class="day-block">
+      <div class="day-marker">
+        <div class="day-dot" style="background:#6B9BB8;"></div>
+        <div class="day-number">D8</div>
+      </div>
+      <div class="day-content">
+        <div class="day-header-row">
+          <div>
+            <div class="day-date-tag">9 / 25 · 週四</div>
+            <div class="day-title-text">Te Anau → 蒂卡波湖</div>
+          </div>
+          <span class="drive-tag">車程 3.5 hr</span>
+        </div>
+        <div class="activities">
+          <div class="activity"><div class="activity-dot" style="background:var(--sky);"></div><div>早上出發，沿 SH8 北上</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--moss-light);"></div><div>中途再停 <strong>Lake Pukaki</strong> 拍照</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--sky);"></div><div>傍晚抵達蒂卡波，check in 休息</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--dark);"></div><div>晚上 <strong>Earth & Sky 星空觀測</strong><span class="tag tag-book">提前預訂</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 9 -->
+    <div class="day-block">
+      <div class="day-marker">
+        <div class="day-dot" style="background:#7A9A62;"></div>
+        <div class="day-number">D9</div>
+      </div>
+      <div class="day-content">
+        <div class="day-header-row">
+          <div>
+            <div class="day-date-tag">9 / 26 · 週五</div>
+            <div class="day-title-text">蒂卡波湖 · 跳傘 + 教堂</div>
+          </div>
+        </div>
+        <div class="activities">
+          <div class="activity"><div class="activity-dot" style="background:var(--warm);"></div><div><strong>Mt. Cook 跳傘</strong><span class="tag tag-weather">天氣備案</span> — 天氣好早點出發</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--moss-light);"></div><div><strong>善牧者教堂</strong> Church of the Good Shepherd</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--moss-light);"></div><div>湖邊散步、小鎮咖啡廳下午茶</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--dark);"></div><div>🌌 晚上星空觀測（若前晚天氣不佳可改今晚）</div></div>
+        </div>
+        <div class="day-note">9 月羽扇豆花季尚未開始（通常 11 月），湖邊景色仍美但無花田。</div>
+      </div>
+    </div>
+
+    <!-- DAY 10 -->
+    <div class="day-block">
+      <div class="day-marker">
+        <div class="day-dot" style="background:#C4973A;"></div>
+        <div class="day-number">D10</div>
+      </div>
+      <div class="day-content">
+        <div class="day-header-row">
+          <div>
+            <div class="day-date-tag">9 / 27 · 週六</div>
+            <div class="day-title-text">蒂卡波 → Castle Hill → 基督城</div>
+          </div>
+          <span class="drive-tag">共約 2.5 hr</span>
+        </div>
+        <div class="activities">
+          <div class="activity"><div class="activity-dot" style="background:var(--gold);"></div><div>早上離開蒂卡波</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--moss-light);"></div><div><strong>Castle Hill / Kura Tāwhiti</strong><span class="tag tag-must">順路必停</span> — 石灰岩巨石群，停留 1–1.5 小時</div></div>
+          <div class="activity"><div class="activity-dot" style="background:var(--sky);"></div><div>下午抵達基督城，還車，市區最後巡禮</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 11 -->
+    <div class="day-block day-transit">
+      <div class="day-marker">
+        <div class="day-dot" style="background:#4A5E3A;"></div>
+        <div class="day-number">D11</div>
+      </div>
+      <div class="day-content">
+        <div class="day-header-row">
+          <div>
+            <div class="day-date-tag">9 / 28 · 週日</div>
+            <div class="day-title-text">基督城 → 飛奧克蘭</div>
+          </div>
+        </div>
+        <div class="activities">
+          <div class="activity"><div class="activity-dot"></div><div>早上基督城半天（Hagley Park 散步或市區咖啡）</div></div>
+          <div class="activity"><div class="activity-dot"></div><div>下午班機飛奧克蘭（約 1.5 小時）</div></div>
+          <div class="activity"><div class="activity-dot"></div><div>夜宿奧克蘭，建議選機場附近飯店</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 12 -->
+    <div class="day-block day-transit">
+      <div class="day-marker">
+        <div class="day-dot" style="background:#4A5E3A;"></div>
+        <div class="day-number">D12</div>
+      </div>
+      <div class="day-content">
+        <div class="day-header-row">
+          <div>
+            <div class="day-date-tag">9 / 29 · 週一</div>
+            <div class="day-title-text">奧克蘭 → 回台灣 ✈️</div>
+          </div>
+        </div>
+        <div class="activities">
+          <div class="activity"><div class="activity-dot"></div><div>早上奧克蘭市區半天（Sky Tower、Queen Street）</div></div>
+          <div class="activity"><div class="activity-dot"></div><div>11:15 前到機場 check in（14:25 出發，提前 3 小時）</div></div>
+          <div class="activity"><div class="activity-dot"></div><div>14:25 ✈️ 奧克蘭飛回台灣</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end timeline -->
+</main>
+
+<footer class="footer">
+  <p>紐西蘭南島自駕 · 2025 · <span>Safe travels 旅途平安</span></p>
+</footer>
+
+<script>
+  const blocks = document.querySelectorAll('.day-block');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  blocks.forEach(b => io.observe(b));
+
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', function() {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
